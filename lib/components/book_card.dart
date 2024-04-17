@@ -8,12 +8,11 @@ class BookCard extends StatelessWidget {
   final double rotationAngle;
 
   const BookCard(
-      {Key? key,
+      {super.key,
       required this.book,
       required this.onTap,
       this.isSelected = false,
-      this.rotationAngle = 0})
-      : super(key: key);
+      this.rotationAngle = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +22,15 @@ class BookCard extends StatelessWidget {
         transform: Matrix4.identity()..rotateX(rotationAngle),
         alignment: FractionalOffset.bottomCenter,
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
-          margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          duration: const Duration(milliseconds: 300),
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           height: 270,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
             boxShadow: [
               BoxShadow(
                   color: Colors.black.withOpacity(0.1),
-                  offset: Offset(5, 5),
+                  offset: const Offset(5, 5),
                   blurRadius: 10)
             ],
             color: Colors.white,
@@ -45,13 +44,14 @@ class BookCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(book.engTitle,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
                       Text(book.zhoTitle,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold)),
-                      Spacer(),
-                      Text(book.period, style: TextStyle(color: Colors.grey)),
+                      const Spacer(),
+                      Text(book.period,
+                          style: const TextStyle(color: Colors.grey)),
                     ],
                   ),
                 ),
@@ -59,8 +59,11 @@ class BookCard extends StatelessWidget {
               Expanded(
                 child: Hero(
                   tag: book.id,
-                  child: Image.asset("assets/images/" + book.imageName + ".png",
-                      fit: BoxFit.cover),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.asset("assets/images/${book.imageName}.png",
+                        fit: BoxFit.cover),
+                  ),
                 ),
               )
             ],

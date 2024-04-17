@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scared_symmetry/models/book.dart';
-import 'package:scared_symmetry/views/bookCard.dart';
-import 'package:scared_symmetry/views/bookView.dart';
+import 'package:scared_symmetry/components/book_card.dart';
+import 'package:scared_symmetry/views/book_view.dart';
 
 class BooksView extends StatefulWidget {
   @override
@@ -10,6 +10,20 @@ class BooksView extends StatefulWidget {
 
 class _BooksViewState extends State<BooksView> {
   AnimeBook? selectedBook;
+  final ScrollController _controller = ScrollController();
+  final double _itemHeight = 300.0; // Adjust based on your item height
+  final int _initialIndex = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_controller.hasClients) {
+        final initialOffset = _initialIndex * _itemHeight;
+        _controller.jumpTo(initialOffset);
+      }
+    });
+  }
 
   void openBookDetail(AnimeBook book) {
     Navigator.of(context).push(MaterialPageRoute(
@@ -23,8 +37,18 @@ class _BooksViewState extends State<BooksView> {
     List<AnimeBook> books = getBooks();
 
     return Scaffold(
-      appBar: AppBar(title: Text('Scripture')),
+      appBar: AppBar(
+        title: const Center(
+          child: Column(
+            children: [
+              Text("Bilingual Scripture", style: TextStyle(fontSize: 14)),
+              Text("雙語經文", style: TextStyle(fontSize: 14)),
+            ],
+          ),
+        ),
+      ),
       body: ListWheelScrollView.useDelegate(
+        controller: _controller,
         itemExtent: 300,
         diameterRatio: 3.7,
         offAxisFraction: -0.4,
@@ -137,12 +161,12 @@ class _BooksViewState extends State<BooksView> {
           zhoTitle: "摩羅乃書",
           imageName: "moro",
           period: "About A.D. 401–21."),
-      AnimeBook(
-          id: "16",
-          engTitle: "THE DOCTRINE AND COVENANTS",
-          zhoTitle: "教義和聖約",
-          imageName: "dc",
-          period: ""),
+      // AnimeBook(
+      //     id: "16",
+      //     engTitle: "THE DOCTRINE AND COVENANTS",
+      //     zhoTitle: "教義和聖約",
+      //     imageName: "dc",
+      //     period: ""),
     ];
   }
 }

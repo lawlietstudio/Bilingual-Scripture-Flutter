@@ -1,4 +1,4 @@
-name: scared_symmetry
+name: Bilingual_Scripture
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -37,6 +37,8 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_tts: ^3.8.5
   json_annotation: ^4.3.0
+  animations: ^2.0.0  # Check for the latest version on pub.dev
+  shared_preferences: ^2.0.13
 
 dev_dependencies:
   flutter_test:
