@@ -47,24 +47,18 @@ class _BooksViewState extends State<BooksView> {
           ),
         ),
       ),
-      body: ListWheelScrollView.useDelegate(
-        controller: _controller,
-        itemExtent: 300,
-        diameterRatio: 3.7,
-        offAxisFraction: -0.4,
-        childDelegate: ListWheelChildBuilderDelegate(
-          builder: (BuildContext context, int index) {
-            if (index < 0 || index >= books.length) return null;
-            AnimeBook book = books[index];
-            return BookCard(
-              book: book,
-              onTap: () => openBookDetail(book),
-              isSelected: selectedBook == book,
-              rotationAngle: selectedBook == book ? -0.2 : 0,
-            );
-          },
-          childCount: books.length,
-        ),
+      body: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        itemCount: books.length,
+        itemBuilder: (context, index) {
+          AnimeBook book = books[index];
+          return BookCard(
+            book: book,
+            onTap: () => openBookDetail(book),
+            isSelected: selectedBook == book,
+            rotationAngle: selectedBook == book ? -0.2 : 0,
+          );
+        },
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scared_symmetry/models/book.dart';
+import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 class BookCard extends StatelessWidget {
   final AnimeBook book;
@@ -25,48 +26,70 @@ class BookCard extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           height: 270,
-          decoration: BoxDecoration(
+          child: NeuContainer(
             borderRadius: BorderRadius.circular(12),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(5, 5),
-                  blurRadius: 10)
-            ],
-            color: Colors.white,
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(book.engTitle,
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      Text(book.zhoTitle,
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      const Spacer(),
-                      Text(book.period,
-                          style: const TextStyle(color: Colors.grey)),
-                    ],
+            color: Colors.lightBlue[100],
+            borderWidth: 3,
+            borderColor: Colors.black,
+            shadowColor: Colors.black,
+            shadowBlurRadius: 0,
+            child: Row(
+              children: [
+
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    child: NeuContainer(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white,
+                      borderWidth: 3,
+                      borderColor: Colors.black,
+                      shadowColor: Colors.black,
+                      shadowBlurRadius: 0,
+                      child: Hero(
+                        tag: book.id,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(4),
+                          child: Image.asset(
+                            "assets/images/${book.imageName}.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: Hero(
-                  tag: book.id,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(4),
-                    child: Image.asset("assets/images/${book.imageName}.png",
-                        fit: BoxFit.cover),
+                                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          book.engTitle,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          book.zhoTitle,
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(),
+                        Text(
+                          book.period,
+                          style: const TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
         ),
       ),
