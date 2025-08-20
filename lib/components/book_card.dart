@@ -25,7 +25,7 @@ class BookCard extends StatelessWidget {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          height: 270,
+          height: 300,
           child: NeuContainer(
             borderRadius: BorderRadius.circular(12),
             color: Colors.lightBlue[100],

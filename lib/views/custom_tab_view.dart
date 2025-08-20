@@ -58,31 +58,28 @@ class _CustomTabViewState extends State<CustomTabView> {
       body: Stack(
         children: List.generate(2, (index) => _buildOffstageNavigator(index)),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(12),
-        child: NeuContainer(
-          color: Colors.lightGreen[100],
-          borderRadius: BorderRadius.circular(16),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: BottomNavigationBar(
-              onTap: onTabTapped,
-              currentIndex: _currentIndex,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              selectedItemColor: Colors.black,
-              unselectedItemColor: Colors.grey,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.auto_stories),
-                  label: 'Scripture',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  label: 'Setting',
-                ),
-              ],
-            ),
+      bottomNavigationBar: NeuContainer(
+        color: Colors.lightGreen[100],
+        borderRadius: BorderRadius.circular(0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+          child: BottomNavigationBar(
+            onTap: onTabTapped,
+            currentIndex: _currentIndex,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.grey,
+            items: const [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.auto_stories),
+                label: 'Scripture',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'Setting',
+              ),
+            ],
           ),
         ),
       ),

@@ -37,7 +37,9 @@ class _BooksViewState extends State<BooksView> {
     List<AnimeBook> books = getBooks();
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 232, 210, 236),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 232, 210, 236),
         title: const Center(
           child: Column(
             children: [
