@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scared_symmetry/models/book.dart';
 import 'package:scared_symmetry/components/book_card.dart';
 import 'package:scared_symmetry/views/book_view.dart';
+import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 class BooksView extends StatefulWidget {
   @override
@@ -37,30 +38,70 @@ class _BooksViewState extends State<BooksView> {
     List<AnimeBook> books = getBooks();
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 232, 210, 236),
+      backgroundColor: Color.fromARGB(255, 0, 229, 255),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 232, 210, 236),
-        title: const Center(
-          child: Column(
-            children: [
-              Text("Bilingual Scripture", style: TextStyle(fontSize: 14)),
-              Text("雙語經文", style: TextStyle(fontSize: 14)),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: Text(
+          'Bilingual Scripture',
+          style: TextStyle(
+            fontFamily: 'Anton',
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                  offset: Offset(3, 3),
+                  color: Color.fromARGB(255, 255, 214, 0)), // yellow
+              Shadow(
+                  offset: Offset(6, 6),
+                  color: Color.fromARGB(255, 255, 77, 166)), // pink
             ],
           ),
         ),
+        automaticallyImplyLeading: false,
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        itemCount: books.length,
-        itemBuilder: (context, index) {
-          AnimeBook book = books[index];
-          return BookCard(
-            book: book,
-            onTap: () => openBookDetail(book),
-            isSelected: selectedBook == book,
-            rotationAngle: selectedBook == book ? -0.2 : 0,
-          );
-        },
+      body: Column(
+        children: [
+          // Horizontal scrollview with 5 NeuTextButton
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Row(
+              children: List.generate(5, (i) {
+                return Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: NeuTextButton(
+                    enableAnimation: true,
+                    text: Text('Button ${i + 1}'),
+                    onPressed: () {
+                      // Add your button logic here
+                    },
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                );
+              }),
+            ),
+          ),
+          // Expanded ListView
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 16),
+              controller: _controller,
+              itemCount: books.length,
+              itemBuilder: (context, index) {
+                AnimeBook book = books[index];
+                return BookCard(
+                  book: book,
+                  onTap: () => openBookDetail(book),
+                  isSelected: selectedBook == book,
+                  rotationAngle: selectedBook == book ? -0.2 : 0,
+                  index: index,
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

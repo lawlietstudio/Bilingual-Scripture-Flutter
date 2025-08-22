@@ -59,8 +59,10 @@ class _CustomTabViewState extends State<CustomTabView> {
         children: List.generate(2, (index) => _buildOffstageNavigator(index)),
       ),
       bottomNavigationBar: NeuContainer(
-        color: Colors.lightGreen[100],
+        color: Color.fromARGB(255, 255, 77, 166),
         borderRadius: BorderRadius.circular(0),
+        borderWidth: 4, // Add thick border
+        borderColor: Colors.black, // Black border for brutalist accent
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
           child: BottomNavigationBar(
@@ -68,8 +70,8 @@ class _CustomTabViewState extends State<CustomTabView> {
             currentIndex: _currentIndex,
             backgroundColor: Colors.transparent,
             elevation: 0,
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: Color.fromARGB(255, 255, 255, 0),
+            unselectedItemColor: Color.fromARGB(255, 50, 50, 50),
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(Icons.auto_stories),
