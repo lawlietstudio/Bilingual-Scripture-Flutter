@@ -19,9 +19,8 @@ class BookCard extends StatelessWidget {
   });
 
   static const List<Color> cardColors = [
-    Color(0xFFFDE68A), // Beige
-    Color(0xFFB4FF00), // Acid Green
-    Color(0xFFC084FC), // Lavender
+    Color(0xFFCC5500), // Beige
+    Color(0xFFB8860B), // Acid Green
   ];
 
   @override

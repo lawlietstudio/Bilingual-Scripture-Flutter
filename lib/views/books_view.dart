@@ -38,28 +38,31 @@ class _BooksViewState extends State<BooksView> {
     List<AnimeBook> books = getBooks();
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 229, 255),
+      backgroundColor: Color(0xFF006666),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+backgroundColor: Color(0xFF006666),
+        elevation: 4, // Slight elevation for a raw, lifted effect
         title: Text(
           'Bilingual Scripture',
           style: TextStyle(
             fontFamily: 'Anton',
-            fontSize: 28,
+            fontSize: 32, // Slightly larger for dominance
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Color(0xFFFFD700), // Bright gold for bold text
             shadows: [
               Shadow(
-                  offset: Offset(3, 3),
-                  color: Color.fromARGB(255, 255, 214, 0)), // yellow
+                offset: Offset(4, 4),
+                color: Color(0xFFA63A3A), // Rust red for a gritty shadow
+              ),
               Shadow(
-                  offset: Offset(6, 6),
-                  color: Color.fromARGB(255, 255, 77, 166)), // pink
+                offset: Offset(8, 8),
+                color: Color(0xFF800080), // Magenta for deeper contrast
+              ),
             ],
           ),
         ),
         automaticallyImplyLeading: false,
+
       ),
       body: Column(
         children: [
@@ -72,6 +75,7 @@ class _BooksViewState extends State<BooksView> {
                 return Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: NeuTextButton(
+                    buttonColor: Color(0xFFA63A3A),
                     enableAnimation: true,
                     text: Text('Button ${i + 1}'),
                     onPressed: () {

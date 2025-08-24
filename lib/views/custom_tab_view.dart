@@ -58,33 +58,40 @@ class _CustomTabViewState extends State<CustomTabView> {
       body: Stack(
         children: List.generate(2, (index) => _buildOffstageNavigator(index)),
       ),
-      bottomNavigationBar: NeuContainer(
-        color: Color.fromARGB(255, 255, 77, 166),
-        borderRadius: BorderRadius.circular(0),
-        borderWidth: 4, // Add thick border
-        borderColor: Colors.black, // Black border for brutalist accent
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-          child: BottomNavigationBar(
-            onTap: onTabTapped,
-            currentIndex: _currentIndex,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            selectedItemColor: Color.fromARGB(255, 255, 255, 0),
-            unselectedItemColor: Color.fromARGB(255, 50, 50, 50),
-            items: const [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.auto_stories),
-                label: 'Scripture',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Setting',
-              ),
-            ],
-          ),
-        ),
+bottomNavigationBar: NeuContainer(
+  color: Color(0xFF4A2C4A), // Deep plum base
+  borderRadius: BorderRadius.circular(0),
+  borderWidth: 6, // Thicker border for brutalist impact
+  borderColor: Color(0xFF1A1A1A), // Darker black for a heavier outline
+  child: Padding(
+    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
+    child: BottomNavigationBar(
+      onTap: onTabTapped,
+      currentIndex: _currentIndex,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      selectedItemColor: Color(0xFFFFD700), // Bright gold for selected item
+      unselectedItemColor: Color(0xFF808080), // Muted gray for unselected
+      selectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 14,
       ),
+      unselectedLabelStyle: TextStyle(
+        fontSize: 12,
+      ),
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.auto_stories, size: 28), // Larger icon
+          label: 'Scripture',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.settings, size: 28), // Larger icon
+          label: 'Setting',
+        ),
+      ],
+    ),
+  ),
+),
     );
   }
 }
